@@ -1,0 +1,6 @@
+set up log levels
+set up error handling
+move elevator to its own type
+define control panel type
+organize into domain
+implement a cycle timer
