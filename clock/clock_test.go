@@ -1,4 +1,4 @@
-package timer
+package clock
 
 import (
 	"testing"
@@ -8,13 +8,13 @@ import (
 // TestStep tests that calling step takes at least 1 second, and adds at least 9 cycles
 func TestStep(t *testing.T) {
 	// given
-	var timer Timer
-	timer.Cycle = 0
+	var clock Clock
+	clock.Cycle = 0
 
 	now := time.Now()
 
 	// when
-	timer.Step(&now)
+	clock.Step(&now)
 
 	//then
 	want, _ := time.ParseDuration("1s")
@@ -25,7 +25,7 @@ func TestStep(t *testing.T) {
 	}
 
 	wantCycle := 9
-	gotCycle := timer.Cycle
+	gotCycle := clock.Cycle
 
 	if wantCycle >= gotCycle {
 		t.Errorf("Didn't get expected. Want: %v, Got: %v", wantCycle, gotCycle)

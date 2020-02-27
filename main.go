@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 import "elevator_control/elevator"
-import "elevator_control/timer"
+import "elevator_control/clock"
 import "time"
 
 func main() {
@@ -13,18 +13,18 @@ func main() {
 	e1.DestFloor = 1
 	e1.DoorOpen = false
 
-	var timer timer.Timer
-	timer.Cycle = 0
+	var clock clock.Clock
+	clock.Cycle = 0
 
 	for {
 		// start clock
 		clockTimer := time.Now()
 
 		//refresh
-		fmt.Println(timer.Cycle, e1)
+		fmt.Printf("[%v] ID: %d, Current: %d, Dest: %d, DoorOpen: %v\n", clock.Cycle, e1.ID, e1.CurrentFloor, e1.DestFloor, e1.DoorOpen)
 
 		// force sync to clock
-		timer.Step(&clockTimer)
+		clock.Step(&clockTimer)
 	}
 
 }
