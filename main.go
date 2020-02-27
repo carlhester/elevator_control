@@ -6,7 +6,6 @@ import "elevator_control/timer"
 import "time"
 
 func main() {
-	start := time.Now()
 
 	var e1 elevator.Elevator
 	e1.ID = 1
@@ -18,11 +17,14 @@ func main() {
 	timer.Cycle = 0
 
 	for {
-		// update
-		timer.Step(&start)
+		// start clock
+		clockTimer := time.Now()
 
-		// refresh
+		//refresh
 		fmt.Println(timer.Cycle, e1)
+
+		// force sync to clock
+		timer.Step(&clockTimer)
 	}
 
 }

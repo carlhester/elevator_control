@@ -2,13 +2,10 @@ package timer
 
 import "time"
 
-func (t *Timer) Step(now *time.Time) int {
-	target := now.Add(time.Second * 1)
-	for now.Before(target) {
-		time.Sleep(1 * time.Millisecond)
-		*now = time.Now()
+func (t *Timer) Step(now *time.Time) {
+	delay, _ := time.ParseDuration("1s")
+	for time.Since(*now) < delay {
+		time.Sleep(100 * time.Millisecond)
+		t.Cycle += 1
 	}
-
-	t.Cycle += 1
-	return t.Cycle
 }
