@@ -17,3 +17,8 @@ func (e *Elevator) CloseDoor() error {
 	e.DoorOpen = false
 	return nil
 }
+
+func (e *Elevator) ChangeFloor(requestFloor int) error {
+	e.CurrentFloor = requestFloor
+	return nil
+}

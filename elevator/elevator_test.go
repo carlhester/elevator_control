@@ -17,10 +17,10 @@ func TestDoorOpen(t *testing.T) {
 
 	// then
 	want := true
-	have := (*elevator1).DoorOpen
+	got := (*elevator1).DoorOpen
 
-	if want != have {
-		t.Errorf("Door did not open. Want: %v, Have: %v", want, have)
+	if want != got {
+		t.Errorf("Door did not open. Want: %v, Have: %v", want, got)
 	}
 
 }
@@ -40,10 +40,31 @@ func TestDoorClose(t *testing.T) {
 
 	// then
 	want := false
-	have := (*elevator1).DoorOpen
+	got := (*elevator1).DoorOpen
 
-	if want != have {
-		t.Errorf("Door did not close. Want: %v, Have: %v", want, have)
+	if want != got {
+		t.Errorf("Door did not close. Want: %v, Have: %v", want, got)
 	}
 
+}
+
+func TestChangeFloor(t *testing.T) {
+	// given
+	elevator1 := &Elevator{
+		ID:           1,
+		CurrentFloor: 1,
+		DestFloor:    1,
+		DoorOpen:     true,
+	}
+
+	// when
+	_ = elevator1.ChangeFloor(5)
+
+	// then
+	got := (*elevator1).CurrentFloor
+	want := 5
+
+	if want != got {
+		t.Errorf("Door did not close. Want: %v, Have: %v", want, got)
+	}
 }
