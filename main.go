@@ -1,20 +1,30 @@
 package main
 
-import "fmt"
-import "elevator_control/elevator"
-import "elevator_control/clock"
-import "time"
+import (
+	"elevator_control/clock"
+	"elevator_control/controls/lobby"
+	"elevator_control/elevator"
+	"flag"
+	"fmt"
+	"time"
+)
 
 func main() {
-
-	var e1 elevator.Elevator
-	e1.ID = 1
-	e1.CurrentFloor = 1
-	e1.DestFloor = 1
-	e1.DoorOpen = false
-
 	var clock clock.Clock
 	clock.Cycle = 0
+
+	var floors = flag.Int("floors", 5, "Number of floors the elevators will serve")
+	flag.Parse()
+
+	lobbyControlPanels := lobby.CreateControlPanels(*floors)
+	fmt.Println(lobbyControlPanels)
+
+	e1 := elevator.Elevator{
+		ID:           1,
+		CurrentFloor: 1,
+		DestFloor:    1,
+		DoorOpen:     false,
+	}
 
 	for {
 		// start clock
