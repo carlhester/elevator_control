@@ -1,6 +1,0 @@
-set up log levels
-set up error handling
-move elevator to its own type
-//organize into domain
-//implement a cycle timer
-add per-floor control panels
